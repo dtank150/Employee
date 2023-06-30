@@ -1,0 +1,82 @@
+<div class="container">
+<p class="text-center fs-3" [ngClass]="isAccountCreated ? 'text-success pb-1' : 'text-danger pb-1'">{{displayMsg}}</p>
+<form [formGroup]="registerForm" (ngSubmit)="Register()" class="border p-3 rounded-3">
+  <div class="row g-0">
+    <div class="col text-center p-2 mb-3 bg-info">
+      <span class="fs-3">Register</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+      <label for="fname" class="form-label fs-4">Firstname:-</label>
+      <input type="text" required class="form-control" formControlName="fname" id="fname">
+      <div class="text-danger form-text" *ngIf="FirstName.errors?.['required'] && (FirstName.touched || FirstName.dirty)">Firstname is required.</div>
+      <div class="text-danger form-text" *ngIf="FirstName.errors?.['minlength'] && (FirstName.touched || FirstName.dirty) ">Firstname At Least 2 Charecter Long.</div>
+      <div class="form-text text-danger" *ngIf="FirstName.errors?.['pattern'] && (FirstName.dirty || FirstName.touched)">
+        First Name Should Start With Alphabet.
+    </div>
+    </div>
+    <div class="col mb-3">
+      <label for="lname" class="form-label fs-4">Lastname:-</label>
+      <input type="text" required class="form-control" formControlName="lname" id="lname">
+      <div class="text-danger form-text" *ngIf="LastName.errors?.['required'] && (LastName.touched || LastName.dirty)">Lastname is required.</div>
+      <div class="text-danger form-text" *ngIf="LastName.errors?.['pattern'] && (LastName.touched || LastName.dirty)">Lastname Should Start With Alphabet.</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+      <label for="email" class="form-label fs-4">Email:-</label>
+      <input type="email" required class="form-control" formControlName="email" id="email">
+      <div class="text-danger form-text" *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">Email Is Required.</div>
+      <div class="text-danger form-text" *ngIf="Email.errors?.['email'] && (Email.touched || Email.dirty)">Please Enter Valid Email</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+      <label for="mobile" class="form-label fs-4">Mobile:-</label>
+      <input type="text" required class="form-control" formControlName="mobile" id="mobile">
+      <div class="text-danger form-text" *ngIf="Mobile.errors?.['required'] && (Mobile.touched || Mobile.dirty)">Mobile Number Is Required.</div>
+      <div class="text-danger form-text"  *ngIf="Mobile.errors?.['minlength'] || Mobile.errors?.['maxlength'] && (Mobile.touched || Mobile.dirty)">Mobile Number Should Be 10 Digits</div>
+      <div class="text-danger form-text" *ngIf="Mobile.errors?.['pattern'] && (Mobile.touched || Mobile.dirty)">Invalid Mobile Number.</div>
+    </div>
+    <div class="col ps-3">
+      <div class="m-1 fs-4">Gender:-</div>
+      <div class="form-check form-check-inline mt-1">
+        <input type="radio" formControlName="gender" value="Male" id="male" class="form-check-input">
+        <label for="male" class="form-check-label">Male</label>
+      </div>
+      <div class="form-check form-check-inline mt-1">
+        <input type="radio" formControlName="gender" value="Female" id="female" class="form-check-input">
+        <label for="female" class="form-check-label">Female</label>
+      </div>
+      <div class="form-text text-danger" *ngIf="Gender.errors?.['required'] && (Gender.touched || Gender.dirty)">Select Gender</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+        <label for="pwd" class="form-label fs-4">Password:-</label>
+        <input type="password" required class="form-control" formControlName="pwd" id="pwd">
+        <div class="text-danger form-text" *ngIf="Pwd.errors?.['required'] &&(Pwd.touched || Pwd.dirty)">Password Is Required.</div>
+        <div class="text-danger form-text"  *ngIf="Pwd.errors?.['minlength'] || Pwd.errors?.['maxlength'] && (Pwd.touched || Pwd.dirty)">Password Should Be At Least 8 And At The Max 15 Characters Long.</div>
+    </div>
+    <div class="col mb-3">
+      <label for="rpwd" class="form-label fs-4">Conform Password:-</label>
+      <input type="password"  class="form-control" formControlName="rpwd" id="rpwd">
+      <div class="form-text text-danger" [ngStyle]="{'display':rpwd}">Password and Conform Password Not Same.</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-3">
+      <div class="d-grid">
+        <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mt-3">
+        <span class="me-2">Already have Account?</span> <a routerLink="/Login">Login Here!!</a>
+    </div>
+    </div>
+
+</form>
+</div>

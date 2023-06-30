@@ -1,0 +1,47 @@
+<nav class="navbar navbar-light bg-info justify-content-between sticky-top">
+  <h1 class="text-white" style="margin-left: 30%;">Welcome to Yash Technology</h1>
+  <a class="btn btn-primary me-5" routerLink="/Login">Logout</a>
+</nav>
+<div class="container">
+  <app-employee-form></app-employee-form>
+</div>
+
+<div class="container mt-5">
+<table class="table table-hover table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Date Of Join</th>
+      <th>Designation</th>
+      <th>Age</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of service.listEmployee">
+      <td>{{emp.firstName}}</td>
+      <td>{{emp.lastName}}</td>
+      <td>{{emp.email}}</td>
+      <td>{{emp.doj | date: 'dd/MM/yyyy'}}</td>
+      <td>{{emp.designation}}</td>
+      <td>{{emp.age}}</td>
+      <td>
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Actions
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" routerLink="/Home" (click)="Update(emp)">Edit</a></li>
+            <li><a class="dropdown-item" routerLink="/Home" (click)="Delete(emp.id)">Delete</a></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+
+
+</table>
+
+</div>
